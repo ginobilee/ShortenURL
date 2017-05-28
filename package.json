@@ -1,0 +1,23 @@
+{
+  "name": "shortenurl",
+  "version": "1.0.0",
+  "description": "Get a shorten URL. This is a Free Code Camp challenge.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ginobilee/ShortenURL.git"
+  },
+  "author": "ginobilee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ginobilee/ShortenURL/issues"
+  },
+  "homepage": "https://github.com/ginobilee/ShortenURL#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27"
+  }
+}
