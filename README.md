@@ -17,3 +17,6 @@ Cloud9 is a cloud based IDE,I used node/express/mongodb to set up this app.
 > DBManager.js manages mongodb api
 
 > views/index.html shows how to use the service
+
+
+![index](https://github.com/ginobilee/ShortenURL/blob/master/img/index.png)
