@@ -8,15 +8,16 @@ var dbManager = new DBManager();
 var router = exports = module.exports = express.Router();
 
 router.use(function(req,res){
+    //console.log('router headersSent1?:'+res.headersSent);
     dbManager.listDocs((docs) => {
       console.log('router:Successfully get all documents!');
-      console.log(req.fresh);
-      console.log(res.headersSent);
+      //console.log('router:headerseng2?:'+res.headersSent);
       res.end(JSON.stringify(docs));
+      return ;
     },function(){
         console.log('router:no record');
-        console.log(req.fresh);
         res.end('There is no record in database now,Please request /add/url to insert one!');
-    });
+        return;
+    },res);
     return ;
 })

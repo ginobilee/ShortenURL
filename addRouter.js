@@ -46,6 +46,7 @@ router.use(function(req,res,next){//check if the url is valid
                 }else{
                     req.mine_original = original,req.mine_proto = protocol;
                     next();//if https,not check
+                    return;
                 }
     }else{
                 res.end('Invalid url,please add a valid url!')
@@ -97,11 +98,12 @@ router.use(function(req,res){//insert into db,return shorted and original url
         console.log('router:insert successful');
         var result = JSON.stringify(message);
         res.end(result);
+        return;
     },function(){
         console.log('router:insert failed')
         res.end('insert failed.try agian.')
+        return;
     });
-    res.send();
 })
 
 function geneRand(val){

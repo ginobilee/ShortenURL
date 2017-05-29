@@ -14,17 +14,14 @@ router.use('/:pid',function(req,res){
         var query = {
             shortID:+pid
         }
-        dbManager.findDoc(query,function(doc){
-            console.log('router got the found event and doc is :');
-            var result = {
-                original_url:req.url,
-                short_url:req.hostname+doc[0].shortID
-            };
-            console.log(result.original_url+result.short_url);
-            res.end(JSON.stringify(result));
+        dbManager.findDoc(query,function(docs){
+            console.log('router: got the doc ');
+            var hostProto = req.headers['x-forwarded-proto'];
+            var newURL = docs[0].originalURL;
+            res.redirect(newURL);
         },function(){
             console.log('router:not found');
-            res.end('url not found ,Please attach a new one!')
+            res.end('Shorten url not found ,Please attach a new one!')
         });//get record
         
     }else{
