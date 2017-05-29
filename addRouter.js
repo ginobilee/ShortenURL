@@ -9,13 +9,15 @@ var dbManager = new DBManager();
 var router = exports = module.exports = express.Router();
 
 router.use(function(req,res,next){//check if the url is valid
+
+    console.log('addRouter');
+    
     var url = req.url.slice(1),re1 = /^http[s]?:\/\/[\S]+.[A-Za-z]+/;
-    console.log(url);
     
     var valid = re1.test(url);
     if(valid){
                 var protocol = url.match(/http[s]?:/)[0],original = url.slice(url.indexOf('//')+2);
-                console.log(protocol+'+' +original);
+                //console.log(protocol+'+' +original);
                 if(protocol == 'http:'){//check for http
                     
                     var opt = {
@@ -67,7 +69,7 @@ router.use(function(req,res,next){//check if db has the document,yes then return
                 };
             var result = JSON.stringify(o);
             try{
-                console.log('Is headers sent?:'+res.headersSent);
+                //console.log('Is headers sent?:'+res.headersSent);
                 res.end(result);
                 return ;
             }
@@ -89,7 +91,7 @@ router.use(function(req,res){//insert into db,return shorted and original url
         original_url:req.mine_proto + '//' + req.mine_original,
         short_url:req.protocol+'://'+req.hostname+'/'+rand
     };
-    console.log(JSON.stringify(message));
+    //console.log(JSON.stringify(message));
     var doc = {
         shortID:rand,
         originalURL:req.mine_proto + '//' + req.mine_original

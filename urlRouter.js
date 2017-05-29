@@ -6,7 +6,14 @@ var express = require('express'),
 var router = exports = module.exports = express.Router();
 var dbManager = new DBManager();
 
-router.use('/:pid',function(req,res){
+router.use('/:pid',function(req,res,next){
+    if(req.params.pid == 'favicon.ico' || req.params.pid == 'style.css'){
+        console.log('favicon here?')
+        res.end();
+        return;
+    }
+    console.log('urlRouter');
+    
     var re = /^[0-9]{4}$/,pid = req.params.pid;
     console.log('got the pid and is:'+pid);
     
@@ -25,7 +32,12 @@ router.use('/:pid',function(req,res){
         });//get record
         
     }else{
-        console.log('router:invalid query ,attach a four-number string')
-        res.end('test it')
+        console.log('router:invalid query ,attach a four-number string');
+        next();
+        //res.end('Shorten url not found ,Please request /add/[url] to get a shorten url!')
     }    
+})
+
+router.use(function(req,res){
+    res.render('index');
 })
